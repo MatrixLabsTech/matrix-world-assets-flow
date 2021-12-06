@@ -1,0 +1,62 @@
+{
+  "emulators": {
+    "default": {
+      "port": 3569,
+      "serviceAccount": "emulator-account"
+    }
+  },
+  "contracts": {
+    "FUSD": {
+      "source": "./cadence/contracts/lib/FUSD.cdc",
+      "aliases": {
+        "testnet": "0xe223d8a629e49c68"
+      }
+    },
+    "FungibleToken": {
+      "source": "./cadence/contracts/lib/FungibleToken.cdc",
+      "aliases": {
+        "testnet": "9a0766d93b6608b7",
+        "emulator": "ee82856bf20e2aa6"
+      }
+    },
+    "FlowToken": {
+      "source": "./cadence/contracts/lib/FlowToken.cdc",
+      "aliases": {
+        "testnet": "7e60df042a9c0868",
+        "emulator": "0ae53cb6e3f42a79",
+		"mainnet": "1654653399040a61"
+      }
+    },
+    "NonFungibleToken": {
+      "source": "./cadence/contracts/lib/NonFungibleToken.cdc",
+      "aliases": {
+        "testnet": "631e88ae7f1d7c20",
+        "mainnet": "1d7e57aa55817448"
+      }
+    },
+    "ExampleNFT": "./cadence/contracts/lib/ExampleNFT.cdc"
+  },
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "test-admin-account": {
+      "address": "01cf0e2f2f715450",
+      "key": "a996c6d610d93faf82ad5b15407b66d3a2b72a284b5c2fd4097b5a3e735a79e1",
+	  "chain": "flow-emulator"
+    },
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "2eae2f31cb5b756151fa11d82949c634b8f28796a711d7eb1e52cc301ed11111"
+    }
+  },
+  "deployments": {
+    "emulator": {
+      "emulator-account": ["FUSD", "NonFungibleToken"],
+      "test-admin-account": ["ExampleNFT"]
+    }
+  }
+}
+

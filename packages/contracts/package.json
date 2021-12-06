@@ -1,0 +1,17 @@
+{
+  "name": "cadence-contract",
+  "version": "0.0.1",
+  "description": "Matrix World Protocol cadence-contract",
+  "main": "index.js",
+  "author": "Xinyao(Alvin) Sun <Lukclyric@gmail.com> @ WhiteMatrix Tech Ltd.",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo todo",
+    "lint": "echo todo",
+    "lint:fix": "echo todo",
+    "format": "echo todo",
+    "format:fix": "echo todo",
+    "test": "echo todo",
+    "test:cov": "echo todo"
+  }
+}

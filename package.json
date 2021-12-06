@@ -1,0 +1,20 @@
+{
+  "name": "flow-cadence-project-seed",
+  "version": "0.0.1",
+  "author": "Xinyao(Alvin) Sun <Lukclyric@gmail.com> @ WhiteMatrix Tech Ltd.",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/contracts",
+    "packages/sdk"
+  ],
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "format": "yarn workspaces run format",
+    "format:fix": "yarn workspaces run format:fix",
+    "test": "yarn workspaces run test",
+    "test:cov": "yarn workspaces run test:cov"
+  }
+}
