@@ -6,4 +6,3 @@ flow accounts create --key $TEST_ADMIN_KEY
 flow transactions send ./cadence/transactions/emulator/TransferFlowToken.cdc 100.0 0x01cf0e2f2f715450;
 
 flow project deploy
-
