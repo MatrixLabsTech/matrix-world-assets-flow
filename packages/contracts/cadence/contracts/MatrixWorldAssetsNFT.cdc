@@ -1,15 +1,14 @@
 import NonFungibleToken from "lib/NonFungibleToken.cdc"
 import LicensedNFT from "LicensedNFT.cdc"
 
-// AssetNFT token contract
+// MatirxWorldAssetsNFT token contract
 //
-pub contract AssetNFT : NonFungibleToken, LicensedNFT {
+pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
 
     pub var totalSupply: UInt64
 
     pub var collectionPublicPath: PublicPath
     pub var collectionStoragePath: StoragePath
-    pub var minterPublicPath: PublicPath
     pub var minterStoragePath: StoragePath
 
     pub event ContractInitialized()
@@ -69,7 +68,7 @@ pub contract AssetNFT : NonFungibleToken, LicensedNFT {
         }
 
         pub fun deposit(token: @NonFungibleToken.NFT) {
-            let token <- token as! @AssetNFT.NFT
+            let token <- token as! @MatrixWorldAssetsNFT.NFT
             let id: UInt64 = token.id
             let dummy <- self.ownedNFTs[id] <- token
             destroy dummy
@@ -86,7 +85,7 @@ pub contract AssetNFT : NonFungibleToken, LicensedNFT {
 
         pub fun getMetadata(id: UInt64): {String:String} {
             let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
-            return (ref as! &AssetNFT.NFT).getMetadata()
+            return (ref as! &MatrixWorldAssetsNFT.NFT).getMetadata()
         }
 
         pub fun getRoyalties(id: UInt64): [LicensedNFT.Royalty] {
@@ -106,12 +105,12 @@ pub contract AssetNFT : NonFungibleToken, LicensedNFT {
     pub resource Minter {
         pub fun mintTo(creator: Capability<&{NonFungibleToken.Receiver}>, metadata: {String:String}, royalties: [LicensedNFT.Royalty]): &NonFungibleToken.NFT {
             let token <- create NFT(
-                id: AssetNFT.totalSupply,
+                id: MatrixWorldAssetsNFT.totalSupply,
                 creator: creator.address,
                 metadata: metadata,
                 royalties: royalties
             )
-            AssetNFT.totalSupply = AssetNFT.totalSupply + 1
+            MatrixWorldAssetsNFT.totalSupply = MatrixWorldAssetsNFT.totalSupply + 1
             let tokenRef = &token as &NonFungibleToken.NFT
             emit Mint(id: token.id, creator: creator.address, metadata: metadata, royalties: royalties)
             creator.borrow()!.deposit(token: <- token)
@@ -119,20 +118,18 @@ pub contract AssetNFT : NonFungibleToken, LicensedNFT {
         }
     }
 
-    pub fun minter(): Capability<&Minter> {
-        return self.account.getCapability<&Minter>(self.minterPublicPath)
+    pub fun minter(): &Minter {
+        return self.account.borrow<&Minter>(from: self.minterStoragePath) ?? panic("Could not borrow minter reference")
     }
 
     init() {
         self.totalSupply = 0
-        self.collectionPublicPath = /public/AssetNFTCollection
-        self.collectionStoragePath = /storage/AssetNFTCollection
-        self.minterPublicPath = /public/AssetNFTMinter
+        self.collectionPublicPath = /public/MatrixWorldAssetNFTCollection
+        self.collectionStoragePath = /storage/MatrixWorldAssetNFTCollection
         self.minterStoragePath = /storage/AssetNFTMinter
 
         let minter <- create Minter()
         self.account.save(<- minter, to: self.minterStoragePath)
-        self.account.link<&Minter>(self.minterPublicPath, target: self.minterStoragePath)
 
         let collection <- self.createEmptyCollection()
         self.account.save(<- collection, to: self.collectionStoragePath)
@@ -141,4 +138,3 @@ pub contract AssetNFT : NonFungibleToken, LicensedNFT {
         emit ContractInitialized()
     }
 }
- 
