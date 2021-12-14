@@ -6,15 +6,12 @@ The smart contracts are written in [Cadence](https://docs.onflow.org/cadence).
 
 ## Addresses
 
-To view the contracts, visit [flow-view-source](https://flow-view-source.com/testnet/account/0xc85a93df58dc02fd/contract/AssetOrder) or using [flowscan-testnet](https://testnet.flowscan.org/account/0xc85a93df58dc02fd/overview)
+To view the contracts, visit [flow-view-source](https://flow-view-source.com/testnet/account/0xe2f1b000e0203c1d/contract/MatrixWorldAssetsNFT) or using [flowscan-testnet](https://testnet.flowscan.org/account/0xe2f1b000e0203c1d/overview)
 
 | Contract      | Mainnet | Testnet              |
 | ------------- | ------- | -------------------- |
-| AssetFee      |         | `0xc85a93df58dc02fd` |
-| AssetOrder    |         | `0xc85a93df58dc02fd` |
-| AssetNFT      |         | `0xc85a93df58dc02fd` |
-| LicensedNFT   |         | `0xc85a93df58dc02fd` |
-| NFTStorefront |         | `0xc85a93df58dc02fd` |
+| MatrixWorldAssetsNFT      |         | `0xe2f1b000e0203c1d` |
+
 
 ## Deploy
 
@@ -62,10 +59,5 @@ contract (along with [`NonFungibleToken`](https://github.com/onflow/flow-nft)) a
 
 #### Contracts Implementation
 
-`AssetFee`: This is simple fee manager that holds the rates and addresses for fees.
+`MatrixWorldAssetsNFT`: The Matrix World Asset NFT contract that implements the flow `NonFungibleToken` and `LicensedNFT` contract. 
 
-`AssetNFT`: The Matrix World Asset NFT contract that implements the flow `NonFungibleToken` and `LicensedNFT` contract. 
-
-`AssetOrder`: This marketplace contract is the wrapper for the
-standard [NFTStorefront](https://github.com/onflow/nft-storefront)
-for handling market orders.
