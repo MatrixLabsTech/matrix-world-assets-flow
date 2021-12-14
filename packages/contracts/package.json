@@ -1,5 +1,5 @@
 {
-  "name": "cadence-contract",
+  "name": "matrix-world-asset-contracts",
   "version": "0.0.1",
   "description": "Matrix World Protocol cadence-contract",
   "main": "index.js",
@@ -12,6 +12,11 @@
     "format": "echo todo",
     "format:fix": "echo todo",
     "test": "echo todo",
-    "test:cov": "echo todo"
+    "test:cov": "echo todo",
+    "emulator": "flow emulator",
+    "deploy:local": "chmod +x ./sh/start-local-emulator.sh && ./sh/start-local-emulator.sh",
+    "deploy:testnet": "flow project deploy --network=testnet",
+    "redeploy:local": "flow project deploy --network=emulator --update",
+    "redeploy:testnet": "flow project deploy --network=testnet --update"
   }
 }
