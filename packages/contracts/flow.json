@@ -34,12 +34,16 @@
         "mainnet": "1d7e57aa55817448"
       }
     },
+    "LicensedNFT": {
+      "source": "./cadence/contracts/LicensedNFT.cdc",
+      "aliases": {
+        "testnet": "ebf4ae01d1284af8",
+        "mainnet": "01ab36aaf654a13e"
+      }
+    },
     "ExampleNFT": "./cadence/contracts/lib/ExampleNFT.cdc",
     "NFTStorefront": "./cadence/contracts/lib/NFTStorefront.cdc",
-    "LicensedNFT": "./cadence/contracts/LicensedNFT.cdc",
-    "AssetFee": "./cadence/contracts/AssetFee.cdc",
-    "AssetNFT": "./cadence/contracts/AssetNFT.cdc",
-    "AssetOrder": "./cadence/contracts/AssetOrder.cdc"
+    "MatrixWorldAssetsNFT": "./cadence/contracts/MatrixWorldAssetsNFT.cdc"
   },
   "networks": {
     "emulator": "127.0.0.1:3569",
@@ -55,10 +59,6 @@
     "emulator-account": {
       "address": "f8d6e0586b0a20c7",
       "key": "2eae2f31cb5b756151fa11d82949c634b8f28796a711d7eb1e52cc301ed11111"
-    },
-    "testnet-account": {
-      "address": "0xc85a93df58dc02fd",
-      "key": "412050e5063d98736dd9409198f531fad146b911e69e7c2cdb0646ebc30322ca"
     }
   },
   "deployments": {
@@ -67,18 +67,7 @@
       "test-admin-account": [
         "NFTStorefront",
         "LicensedNFT",
-        "AssetFee",
-        "AssetNFT",
-        "AssetOrder"
-      ]
-    },
-    "testnet": {
-      "testnet-account": [
-        "NFTStorefront",
-        "LicensedNFT",
-        "AssetFee",
-        "AssetNFT",
-        "AssetOrder"
+        "MatrixWorldAssetsNFT"
       ]
     }
   }
