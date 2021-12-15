@@ -1,11 +1,12 @@
+// Package test performs tests on the contracts method
 package test
 
 import (
 	"os"
 	"testing"
 
-	sdkcontracts "github.com/MatrixLabsTech/matrix-world-assets-flow/packages/contracts/lib/go/contracts"
-	sdktemplates "github.com/onflow/flow-go-sdk/templates"
+	sdkContracts "github.com/MatrixLabsTech/matrix-world-assets-flow/packages/contracts/lib/go/contracts"
+	sdkTemplates "github.com/onflow/flow-go-sdk/templates"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -34,14 +35,14 @@ var (
 	contractRoot = getContractRoot()
 )
 
-// This test is for testing the deployment the topshot smart contracts
+// TestNFTDeployment tests the deployment of MatrixWorld asset NFT
 func TestNFTDeployment(t *testing.T) {
 	b := newBlockchain()
 
 	// Should be able to deploy the NFT contract
 	// as a new account with no keys.
 	nftCode, _ := DownloadFile(NonFungibleTokenContractsBaseURL + NonFungibleTokenInterfaceFile)
-	nftAddr, err := b.CreateAccount(nil, []sdktemplates.Contract{
+	nftAddr, err := b.CreateAccount(nil, []sdkTemplates.Contract{
 		{
 			Name:   "NonFungibleToken",
 			Source: string(nftCode),
@@ -56,7 +57,7 @@ func TestNFTDeployment(t *testing.T) {
 
 	// deploy LicensedNFTInterface
 	licensedNFTCode, _ := DownloadFile(LicensedNFTInterfaceURL)
-	licensedNFTAddr, err := b.CreateAccount(nil, []sdktemplates.Contract{
+	licensedNFTAddr, err := b.CreateAccount(nil, []sdkTemplates.Contract{
 		{
 			Name:   "LicensedNFT",
 			Source: string(licensedNFTCode),
@@ -71,9 +72,9 @@ func TestNFTDeployment(t *testing.T) {
 
 	// Should be able to deploy AssetNFT contract
 	// as a new account with no keys.
-	assetsNFTCode := sdkcontracts.GenerateTopShotContract("0x"+nftAddr.String(), "0x"+licensedNFTAddr.String(), getContractRoot())
+	assetsNFTCode := sdkContracts.Generate("0x"+nftAddr.String(), "0x"+licensedNFTAddr.String(), getContractRoot())
 	t.Logf("assetsNFTCode contract: %s", assetsNFTCode)
-	assetsNFTAddr, err := b.CreateAccount(nil, []sdktemplates.Contract{
+	assetsNFTAddr, err := b.CreateAccount(nil, []sdkTemplates.Contract{
 		{
 			Name:   "MatrixWorldAssetsNFT",
 			Source: string(assetsNFTCode),
@@ -85,5 +86,4 @@ func TestNFTDeployment(t *testing.T) {
 	}
 	_, err = b.CommitBlock()
 	assert.NoError(t, err)
-
 }

@@ -25,7 +25,7 @@ func ReadFile(path string) []byte {
 	return contents
 }
 
-// DownloadFile will download a url a byte slice
+// DownloadFile will download an url a byte slice
 func DownloadFile(url string) ([]byte, error) {
 
 	// Get the data

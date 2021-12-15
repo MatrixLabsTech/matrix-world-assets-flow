@@ -1,3 +1,4 @@
+// Package contracts generates a new MatrixWorldAssetsNFT contract
 package contracts
 
 import (
@@ -11,7 +12,9 @@ const (
 	defaultLicensedNFT             = "\"LicensedNFT.cdc\""
 )
 
-func GenerateTopShotContract(nftAddr string, licensedNftAddr string, contractRoot string) []byte {
+// Generate returns a copy of the MatrixWorldAssetsNFT contract.
+// The contract address is replaced with the given nftAddr and licensedNftAddr.
+func Generate(nftAddr, licensedNftAddr, contractRoot string) []byte {
 	// root to './' if empty
 	if contractRoot == "" {
 		contractRoot = "./"
