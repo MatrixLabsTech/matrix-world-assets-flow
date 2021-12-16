@@ -2,6 +2,8 @@
 package test
 
 import (
+	emulator "github.com/onflow/flow-emulator"
+	"github.com/onflow/flow-go-sdk"
 	"os"
 	"testing"
 
@@ -35,9 +37,8 @@ var (
 	contractRoot = getContractRoot()
 )
 
-// TestNFTDeployment tests the deployment of MatrixWorld asset NFT
-func TestNFTDeployment(t *testing.T) {
-	b := newBlockchain()
+func deployMatrixWorldAssetsNFT(t *testing.T) (b *emulator.Blockchain, assetsNFTAddr flow.Address) {
+	b = newBlockchain()
 
 	// Should be able to deploy the NFT contract
 	// as a new account with no keys.
@@ -74,7 +75,7 @@ func TestNFTDeployment(t *testing.T) {
 	// as a new account with no keys.
 	assetsNFTCode := sdkContracts.Generate("0x"+nftAddr.String(), "0x"+licensedNFTAddr.String(), getContractRoot())
 	t.Logf("assetsNFTCode contract: %s", assetsNFTCode)
-	assetsNFTAddr, err := b.CreateAccount(nil, []sdkTemplates.Contract{
+	assetsNFTAddr, err = b.CreateAccount(nil, []sdkTemplates.Contract{
 		{
 			Name:   "MatrixWorldAssetsNFT",
 			Source: string(assetsNFTCode),
@@ -86,4 +87,18 @@ func TestNFTDeployment(t *testing.T) {
 	}
 	_, err = b.CommitBlock()
 	assert.NoError(t, err)
+	return
+}
+
+// TestNFTDeployment tests the deployment of MatrixWorld asset NFT
+func TestNFTDeployment(t *testing.T) {
+	deployMatrixWorldAssetsNFT(t)
+}
+
+// TestNFTSetupAccount tests the NFT setup_account
+func TestNFTSetupAccount(t *testing.T) {
+	b, _ := deployMatrixWorldAssetsNFT(t)
+	var script []byte
+	var args [][]byte
+	executeScriptAndCheck(t, b, script, args)
 }
