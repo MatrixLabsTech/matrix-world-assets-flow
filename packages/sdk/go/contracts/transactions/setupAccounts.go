@@ -1,4 +1,4 @@
-package scripts
+package transactions
 
 import (
 	"io/ioutil"
@@ -6,21 +6,21 @@ import (
 )
 
 const (
-	CheckScriptFile       = "check.cdc"
+	SetupAccountsFile       = "setup_accounts.cdc"
 	defaultNonFungibleTokenAddress = "\"../contracts/lib/NonFungibleToken.cdc\""
 	defaultMatrixWorldAssetsNFTAddress = "\"../contracts/MatrixWorldAssetsNFT.cdc\""
 )
 
-// CheckScript reads and returns the check.cdc script in bytes
-func CheckScript(nftAddr, mwAssetsNFTAddr string) []byte {
+// SetupAccounts reads and returns the check.cdc script in bytes
+func SetupAccounts(nftAddr, mwAssetsNFTAddr string) []byte {
 	// read the script file as string
-	script, err := ioutil.ReadFile(getScriptRoot() + CheckScriptFile)
+	trans, err := ioutil.ReadFile(getTransactionsRoot() + SetupAccountsFile)
 	if err != nil {
 		panic(err)
 	}
 
 	// substitute contracts addresses
-	scriptWithAddr := strings.ReplaceAll(string(script), defaultNonFungibleTokenAddress, "0x"+nftAddr)
+	scriptWithAddr := strings.ReplaceAll(string(trans), defaultNonFungibleTokenAddress, "0x"+nftAddr)
 	scriptWithAddr = strings.ReplaceAll(scriptWithAddr, defaultMatrixWorldAssetsNFTAddress, "0x"+mwAssetsNFTAddr)
 
 	return []byte(scriptWithAddr)
