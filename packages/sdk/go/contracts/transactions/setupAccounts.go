@@ -2,19 +2,20 @@ package transactions
 
 import (
 	"io/ioutil"
+	"path/filepath"
 	"strings"
 )
 
 const (
-	SetupAccountsFile       = "setup_accounts.cdc"
-	defaultNonFungibleTokenAddress = "\"../contracts/lib/NonFungibleToken.cdc\""
+	SetupAccountsFile                  = "setup_accounts.cdc"
+	defaultNonFungibleTokenAddress     = "\"../../../contracts/core/NonFungibleToken.cdc\""
 	defaultMatrixWorldAssetsNFTAddress = "\"../contracts/MatrixWorldAssetsNFT.cdc\""
 )
 
-// SetupAccounts reads and returns the check.cdc script in bytes
+// SetupAccounts reads and returns the setup_accounts.cdc transaction file in bytes
 func SetupAccounts(nftAddr, mwAssetsNFTAddr string) []byte {
 	// read the script file as string
-	trans, err := ioutil.ReadFile(getTransactionsRoot() + SetupAccountsFile)
+	trans, err := ioutil.ReadFile(filepath.Join(GetRoot(), SetupAccountsFile))
 	if err != nil {
 		panic(err)
 	}

@@ -1,7 +1,19 @@
 .PHONY: test
+
+all: check-tidy
+	go test ./...
+
 test:
-	$(MAKE) test -C test
+	go test -v ./...
+
+.PHONY: check-tidy
+check-tidy:
+	go mod tidy
 
 .PHONY: ci
-ci:
-	$(MAKE) ci -C test
+ci: format check-tidy test
+
+.PHONY: format
+format:
+	go fmt ./...
+

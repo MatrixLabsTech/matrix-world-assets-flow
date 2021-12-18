@@ -2,19 +2,20 @@ package scripts
 
 import (
 	"io/ioutil"
+	"path/filepath"
 	"strings"
 )
 
 const (
-	CheckScriptFile       = "check.cdc"
-	defaultNonFungibleTokenAddress = "\"../contracts/lib/NonFungibleToken.cdc\""
+	CheckScriptFile                    = "check.cdc"
+	defaultNonFungibleTokenAddress     = "\"../contracts/lib/NonFungibleToken.cdc\""
 	defaultMatrixWorldAssetsNFTAddress = "\"../contracts/MatrixWorldAssetsNFT.cdc\""
 )
 
-// CheckScript reads and returns the check.cdc script in bytes
-func CheckScript(nftAddr, mwAssetsNFTAddr string) []byte {
+// GetCheckScript reads and returns the check.cdc script in bytes
+func GetCheckScript(nftAddr, mwAssetsNFTAddr string) []byte {
 	// read the script file as string
-	script, err := ioutil.ReadFile(getScriptRoot() + CheckScriptFile)
+	script, err := ioutil.ReadFile(filepath.Join(GetRoot(), CheckScriptFile))
 	if err != nil {
 		panic(err)
 	}
