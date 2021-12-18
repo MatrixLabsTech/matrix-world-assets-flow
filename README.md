@@ -12,7 +12,6 @@ To view the contracts, visit [flow-view-source](https://flow-view-source.com/tes
 | ------------- | ------- | -------------------- |
 | MatrixWorldAssetsNFT      |         | `0xe2f1b000e0203c1d` |
 
-
 ## Deploy
 
 ### local emulator
@@ -59,5 +58,4 @@ contract (along with [`NonFungibleToken`](https://github.com/onflow/flow-nft)) a
 
 #### Contracts Implementation
 
-`MatrixWorldAssetsNFT`: The Matrix World Asset NFT contract that implements the flow `NonFungibleToken` and `LicensedNFT` contract. 
-
+`MatrixWorldAssetsNFT`: The Matrix World Asset NFT contract that implements the flow `NonFungibleToken` and `LicensedNFT` contract.

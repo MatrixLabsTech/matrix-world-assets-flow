@@ -66,7 +66,9 @@ func TestExecScriptsTransactions(t *testing.T) {
 	nftAddr, err := e.Deploy(nftCode, "NonFungibleToken")
 	licensedNFTCode, err := GenerateLicensedNFT()
 	licensedNFTAddr, err := e.Deploy(licensedNFTCode, "LicensedNFT")
-	mwNFTCode, err := GenerateMatrixWorldAssetsNFT("0x"+nftAddr.String(), "0x"+licensedNFTAddr.String(),
+	mwNFTCode, err := GenerateMatrixWorldAssetsNFT(
+		"0x"+nftAddr.String(),
+		"0x"+licensedNFTAddr.String(),
 		getContractRoot())
 	mwNFTAddr, err := e.Deploy(mwNFTCode, "MatrixWorldAssetsNFT")
 
