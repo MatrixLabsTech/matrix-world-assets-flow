@@ -1,8 +1,7 @@
-.PHONY: test
-
-all: check-tidy
+all: format check-tidy
 	go test ./...
 
+.PHONY: test
 test:
 	go test -v ./...
 
