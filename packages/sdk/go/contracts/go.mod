@@ -1,9 +1,8 @@
-module github.com/MatrixLabsTech/matrix-world-assets-flow/packages/contracts/lib/go/test
+module github.com/MatrixLabsTech/matrix-world-assets-flow
 
 go 1.17
 
 require (
-	github.com/MatrixLabsTech/matrix-world-assets-flow/packages/contracts/lib/go/contracts v1.0.0
 	github.com/onflow/cadence v0.20.2
 	github.com/onflow/flow-emulator v0.27.2
 	github.com/onflow/flow-go-sdk v0.24.0
@@ -113,5 +112,3 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
-
-replace github.com/MatrixLabsTech/matrix-world-assets-flow/packages/contracts/lib/go/contracts => ../contracts
