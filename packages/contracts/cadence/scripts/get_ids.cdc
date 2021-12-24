@@ -1,4 +1,4 @@
-import NonFungibleToken from "../../../../contracts/core/NonFungibleToken.cdc"
+import NonFungibleToken from "../contracts/lib/NonFungibleToken.cdc"
 import MatrixWorldAssetsNFT from "../contracts/MatrixWorldAssetsNFT.cdc"
 
 // Take MatrixWorldAssetsNFT ids by account address

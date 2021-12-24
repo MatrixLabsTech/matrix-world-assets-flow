@@ -1,0 +1,71 @@
+[
+  {
+    "type": "Struct",
+    "value": {
+      "id": "A.01cf0e2f2f715450.MatrixWorldAssetsNFT.Metadata",
+      "fields": [
+        {
+          "name": "Version",
+          "value": {
+            "type": "String",
+            "value": "METADATA_VERSION"
+          }
+        },
+        {
+          "name": "Name",
+          "value": {
+            "type": "String",
+            "value": "METADATA_NAME"
+          }
+        },
+        {
+          "name": "Description",
+          "value": {
+            "type": "String",
+            "value": "METADATA_DESCRIPTION"
+          }
+        },
+        {
+          "name": "External_url",
+          "value": {
+            "type": "Optional",
+            "value": {
+              "type": "String",
+              "value": "METADATA_EXTERNAL_URL"
+            }
+          }
+        },
+        {
+          "name": "Image",
+          "value": {
+            "type": "Optional",
+            "value": {
+              "type": "String",
+              "value": "METADATA_IMAGE"
+            }
+          }
+        },
+        {
+          "name": "Attributes",
+          "value": {
+            "type": "Optional",
+            "value": {
+              "type": "String",
+              "value": "METADATA_ATTRIBUTES"
+            }
+          }
+        },
+        {
+          "name": "AnimationURL",
+          "value": {
+            "type": "Optional",
+            "value": {
+              "type": "String",
+              "value": "METADATA_ANIMATION_URL"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

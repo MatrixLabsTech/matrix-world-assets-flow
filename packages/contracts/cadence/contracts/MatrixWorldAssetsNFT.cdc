@@ -15,7 +15,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
 
-    pub event Mint(id: UInt64, creator: Address, metadata: {String:String}, royalties: [LicensedNFT.Royalty])
+    pub event Mint(id: UInt64, creator: Address, metadata: MatrixWorldAssetsNFT.Metadata, royalties: [LicensedNFT.Royalty])
     pub event Destroy(id: UInt64)
 
     pub struct Royalty {
@@ -28,20 +28,40 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
         }
     }
 
+     pub struct Metadata {
+        pub let Version: String
+        pub let Name: String
+        pub let Description: String
+        pub let External_url: String?
+        pub let Image: String?
+        pub let Attributes: String? 
+        pub let AnimationURL: String?
+
+        init(Version: String, Name: String, Description: String, External_url: String?, Image: String?, Attributes: String?, AnimationURL: String?) {
+            self.Version = Version
+            self.Name = Name
+            self.Description = Description
+            self.External_url = External_url
+            self.Image = Image
+            self.Attributes = Attributes
+            self.AnimationURL = AnimationURL
+        }
+    }
+
     pub resource NFT: NonFungibleToken.INFT {
         pub let id: UInt64
         pub let creator: Address
-        access(self) let metadata: {String:String}
+        access(self) let metadata: MatrixWorldAssetsNFT.Metadata
         access(self) let royalties: [LicensedNFT.Royalty]
 
-        init(id: UInt64, creator: Address, metadata: {String:String}, royalties: [LicensedNFT.Royalty]) {
+        init(id: UInt64, creator: Address, metadata: MatrixWorldAssetsNFT.Metadata, royalties: [LicensedNFT.Royalty]) {
             self.id = id
             self.creator = creator
             self.metadata = metadata
             self.royalties = royalties
         }
 
-        pub fun getMetadata(): {String:String} {
+        pub fun getMetadata(): MatrixWorldAssetsNFT.Metadata {
             return self.metadata
         }
 
@@ -83,7 +103,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
             return &self.ownedNFTs[id] as &NonFungibleToken.NFT
         }
 
-        pub fun getMetadata(id: UInt64): {String:String} {
+        pub fun getMetadata(id: UInt64): MatrixWorldAssetsNFT.Metadata {
             let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
             return (ref as! &MatrixWorldAssetsNFT.NFT).getMetadata()
         }
@@ -103,7 +123,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
     }
 
     pub resource Minter {
-        pub fun mintTo(creator: Capability<&{NonFungibleToken.Receiver}>, metadata: {String:String}, royalties: [LicensedNFT.Royalty]): &NonFungibleToken.NFT {
+        pub fun mintTo(creator: Capability<&{NonFungibleToken.Receiver}>, metadata: MatrixWorldAssetsNFT.Metadata, royalties: [LicensedNFT.Royalty]): &NonFungibleToken.NFT {
             let token <- create NFT(
                 id: MatrixWorldAssetsNFT.totalSupply,
                 creator: creator.address,
