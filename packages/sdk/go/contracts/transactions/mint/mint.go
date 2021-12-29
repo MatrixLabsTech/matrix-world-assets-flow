@@ -1,4 +1,4 @@
-package transactions
+package mint
 
 import (
 	"io/ioutil"
@@ -9,15 +9,13 @@ import (
 )
 
 const (
-	SetupAccountsFile                  = "setup_accounts.cdc"
+  MintFile = "mint.cdc"
 	defaultNonFungibleTokenAddress     = "\"../contracts/lib/NonFungibleToken.cdc\""
 	defaultMatrixWorldAssetsNFTAddress = "\"../contracts/MatrixWorldAssetsNFT.cdc\""
 )
 
-// SetupAccounts reads and returns the setup_accounts.cdc transaction file in bytes
-func SetupAccounts(nftAddr, mwAssetsNFTAddr string) []byte {
-	// read the script file as string
-	trans, err := ioutil.ReadFile(filepath.Join(contracts.GetTransRoot(), SetupAccountsFile))
+func GenerateMintNFTTransaction(nftAddr, mwAssetsNFTAddr string) [] byte {
+	trans, err := ioutil.ReadFile(filepath.Join(contracts.GetTransRoot(), MintFile))
 	if err != nil {
 		panic(err)
 	}

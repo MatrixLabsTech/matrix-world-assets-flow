@@ -1,4 +1,4 @@
-module github.com/MatrixLabsTech/matrix-world-assets-flow
+module github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts
 
 go 1.17
 
@@ -22,6 +22,7 @@ require (
 	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/ef-ds/deque v1.0.4 // indirect
 	github.com/ethereum/go-ethereum v1.9.13 // indirect
+	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.3.1-0.20211029162100-5d5d7c3edd41 // indirect
 	github.com/fxamacker/circlehash v0.1.0 // indirect
