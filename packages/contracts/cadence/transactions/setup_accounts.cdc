@@ -8,7 +8,7 @@ transaction {
         if acct.borrow<&MatrixWorldAssetsNFT.Collection>(from: MatrixWorldAssetsNFT.collectionStoragePath) == nil {
             let collection <- MatrixWorldAssetsNFT.createEmptyCollection() as! @MatrixWorldAssetsNFT.Collection
             acct.save(<-collection, to: MatrixWorldAssetsNFT.collectionStoragePath)
-            acct.link<&MatrixWorldAssetsNFT.Collection{NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver}>(MatrixWorldAssetsNFT.collectionPublicPath, target: MatrixWorldAssetsNFT.collectionStoragePath)
+            acct.link<&{NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver, MatrixWorldAssetsNFT.Metadata}>(MatrixWorldAssetsNFT.collectionPublicPath, target: MatrixWorldAssetsNFT.collectionStoragePath)
         }
     }
 }

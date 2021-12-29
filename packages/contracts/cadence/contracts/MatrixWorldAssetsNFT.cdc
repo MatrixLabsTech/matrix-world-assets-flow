@@ -137,7 +137,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
 
         let collection <- self.createEmptyCollection()
         self.account.save(<- collection, to: self.collectionStoragePath)
-        self.account.link<&{Metadata, NonFungibleToken.CollectionPublic,NonFungibleToken.Receiver}>(self.collectionPublicPath, target: self.collectionStoragePath)
+        self.account.link<&{Metadata, NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver}>(self.collectionPublicPath, target: self.collectionStoragePath)
 
         emit ContractInitialized()
     }
