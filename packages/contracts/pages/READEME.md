@@ -9,7 +9,13 @@ flow transactions send cadence/transactions/setup_accounts.cdc
 ### get nft ids
 
 ```bash
-flow transactions send cadence/transactions/setup_accounts.cdc
+flow scripts execute cadence/scripts/get_ids.cdc f8d6e0586b0a20c7
+```
+
+### get nft metadata 
+
+```bash
+flow scripts execute cadence/scripts/get_metadata.cdc f8d6e0586b0a20c7 0
 ```
 
 ### mint test ids using admin account
