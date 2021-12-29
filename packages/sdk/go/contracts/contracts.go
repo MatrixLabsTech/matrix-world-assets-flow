@@ -2,12 +2,13 @@
 package contracts
 
 import (
-	"github.com/onflow/flow-emulator"
+	"path/filepath"
+
+	emulator "github.com/onflow/flow-emulator"
 	"github.com/onflow/flow-emulator/types"
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/crypto"
 	"github.com/onflow/flow-go-sdk/templates"
-	"os"
 
 	"io/ioutil"
 	"strings"
@@ -20,14 +21,13 @@ const (
 
 	defaultNonFungibleTokenAddress = "\"lib/NonFungibleToken.cdc\""
 	defaultLicensedNFT             = "\"LicensedNFT.cdc\""
-	defaultContractRoot            = "../../../contracts/cadence/contracts/"
 )
 
 // GenerateMatrixWorldAssetsNFT returns a copy of the MatrixWorldAssetsNFT contract.
 // The contract address is replaced with the given nftAddr and licensedNftAddr.
 func GenerateMatrixWorldAssetsNFT(nftAddr, licensedNftAddr, contractRoot string) (code contractCode, err error) {
 	// read the contract file as string
-	contractFile, err := ioutil.ReadFile(contractRoot + matrixWorldAssetsNFTFile)
+	contractFile, err := ioutil.ReadFile(filepath.Join(contractRoot, matrixWorldAssetsNFTFile))
 	if err != nil {
 		return nil, err
 	}
@@ -155,13 +155,4 @@ func (e *flowEmulator) CreateTrans(script []byte, authorizerAddress flow.Address
 		SetPayer(e.ServiceKey().Address).
 		AddAuthorizer(authorizerAddress)
 	return tx
-}
-
-// getContractRoot returns CONTRACT_ROOT from environment or use default value if not set
-func getContractRoot() string {
-	contractRoot := os.Getenv("CONTRACT_ROOT")
-	if contractRoot == "" {
-		contractRoot = defaultContractRoot
-	}
-	return contractRoot
 }

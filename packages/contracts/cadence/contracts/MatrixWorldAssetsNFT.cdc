@@ -28,6 +28,10 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
         }
     }
 
+    pub resource interface Metadata {
+        pub fun getMetadata(id: UInt64): {String:String}
+    }
+
     pub resource NFT: NonFungibleToken.INFT {
         pub let id: UInt64
         pub let creator: Address
@@ -54,7 +58,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
         }
     }
 
-    pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, LicensedNFT.CollectionPublic {
+    pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, LicensedNFT.CollectionPublic, Metadata {
         pub var ownedNFTs: @{UInt64: NonFungibleToken.NFT}
 
         init() {
@@ -133,7 +137,7 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
 
         let collection <- self.createEmptyCollection()
         self.account.save(<- collection, to: self.collectionStoragePath)
-        self.account.link<&{NonFungibleToken.CollectionPublic,NonFungibleToken.Receiver}>(self.collectionPublicPath, target: self.collectionStoragePath)
+        self.account.link<&{Metadata, NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver}>(self.collectionPublicPath, target: self.collectionStoragePath)
 
         emit ContractInitialized()
     }

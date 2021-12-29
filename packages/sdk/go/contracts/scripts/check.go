@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"strings"
+
+  "github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
 )
 
 const (
@@ -15,7 +17,7 @@ const (
 // GetCheckScript reads and returns the check.cdc script in bytes
 func GetCheckScript(nftAddr, mwAssetsNFTAddr string) []byte {
 	// read the script file as string
-	script, err := ioutil.ReadFile(filepath.Join(GetRoot(), CheckScriptFile))
+	script, err := ioutil.ReadFile(filepath.Join(contracts.GetScriptRoot(), CheckScriptFile))
 	if err != nil {
 		panic(err)
 	}

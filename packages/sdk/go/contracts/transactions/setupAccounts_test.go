@@ -1,14 +1,26 @@
 package transactions
 
 import (
-	"github.com/MatrixLabsTech/matrix-world-assets-flow"
+	"testing"
+
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/crypto"
 	"github.com/onflow/flow-go-sdk/test"
 	"github.com/stretchr/testify/require"
 )
 
-import "testing"
+const (
+	scriptsRoot      = "../../../../contracts/cadence/scripts/"
+	transactionsRoot = "../../../../contracts/cadence/transactions/"
+	contractRoot     = "../../../../contracts/cadence/contracts/"
+)
+
+func init() {
+	contracts.SetScriptRoot(scriptsRoot)
+	contracts.SetTransRoot(transactionsRoot)
+	contracts.SetContractRoot(contractRoot)
+}
 
 func TestSetupAccountsTrans(t *testing.T) {
 	e := contracts.NewEmulator()
@@ -18,7 +30,7 @@ func TestSetupAccountsTrans(t *testing.T) {
 	licensedNFTCode, err := contracts.GenerateLicensedNFT()
 	licensedNFTAddr, err := e.Deploy(licensedNFTCode, "LicensedNFT")
 	mwNFTCode, err := contracts.GenerateMatrixWorldAssetsNFT("0x"+nftAddr.String(), "0x"+licensedNFTAddr.String(),
-		getContractRoot())
+		contracts.GetContractRoot())
 	mwNFTAddr, err := e.Deploy(mwNFTCode, "MatrixWorldAssetsNFT")
 
 	// Create a new user account
