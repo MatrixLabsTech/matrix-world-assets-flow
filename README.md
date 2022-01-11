@@ -10,7 +10,7 @@ To view the contracts, visit [flow-view-source](https://flow-view-source.com/tes
 
 | Contract      | Mainnet | Testnet              |
 | ------------- | ------- | -------------------- |
-| MatrixWorldAssetsNFT      |         | `0xe2f1b000e0203c1d` |
+| MatrixWorldAssetsNFT      |         | `0x95702b3642af3d0c` |
 
 ## Deploy
 

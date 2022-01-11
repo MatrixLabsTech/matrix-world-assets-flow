@@ -43,7 +43,12 @@
     },
     "ExampleNFT": "./cadence/contracts/lib/ExampleNFT.cdc",
     "NFTStorefront": "./cadence/contracts/lib/NFTStorefront.cdc",
-    "MatrixWorldAssetsNFT": "./cadence/contracts/MatrixWorldAssetsNFT.cdc"
+    "MatrixWorldAssetsNFT": {
+      "source": "./cadence/contracts/MatrixWorldAssetsNFT.cdc",
+      "aliases": {
+        "testnet": "95702b3642af3d0c"
+      }
+    }
   },
   "networks": {
     "emulator": "127.0.0.1:3569",
