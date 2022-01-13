@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	localScriptsRoot = "../../../contracts/cadence/scripts/"
+	localScriptsRoot     = "../../../contracts/cadence/scripts/"
 	localTransactionRoot = "../../../contracts/cadence/transactions/"
 )
 
 func init() {
-  SetScriptRoot(localScriptsRoot)
-  SetTransRoot(localTransactionRoot)
+	SetScriptRoot(localScriptsRoot)
+	SetTransRoot(localTransactionRoot)
 }
 
 func TestNonFungibleToken(t *testing.T) {

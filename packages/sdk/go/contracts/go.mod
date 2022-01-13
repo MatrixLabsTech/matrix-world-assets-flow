@@ -1,5 +1,4 @@
-module github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts
-
+module github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts
 go 1.17
 
 require (

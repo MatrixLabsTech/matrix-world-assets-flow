@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-  "github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts"
 )
 
 const (

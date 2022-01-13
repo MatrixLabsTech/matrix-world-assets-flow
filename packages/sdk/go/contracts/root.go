@@ -8,13 +8,13 @@ import (
 const (
 	defaultTransactionsRoot = "../../../contracts/cadence/transactions/"
 	defaultContractRoot     = "../../../contracts/cadence/contracts/"
-	defaultScriptRoot   = "../../../contracts/cadence/scripts/"
+	defaultScriptRoot       = "../../../contracts/cadence/scripts/"
 )
 
 var (
-	transRoot string
-	scriptRoot string
-  contractRoot string
+	transRoot    string
+	scriptRoot   string
+	contractRoot string
 )
 
 // GetRoot reads from environment or use default value if not set
@@ -60,21 +60,21 @@ func SetScriptRoot(root string) {
 
 // get CONTRACT_ROOT from environment or use default value if not set
 func GetContractRoot() string {
-  if contractRoot == "" {
-    contractRoot = os.Getenv("CONTRACT_ROOT")
-    if contractRoot == "" {
-      contractRoot = defaultContractRoot
-    }
-  }
-  if contractRoot == "" {
-    panic("root is not valid")
-  }
+	if contractRoot == "" {
+		contractRoot = os.Getenv("CONTRACT_ROOT")
+		if contractRoot == "" {
+			contractRoot = defaultContractRoot
+		}
+	}
+	if contractRoot == "" {
+		panic("root is not valid")
+	}
 	return contractRoot
 }
 
 func SetContractRoot(root string) {
-  if root == "" {
-    panic("root is not valid")
-  }
-  contractRoot = filepath.Clean(root)
+	if root == "" {
+		panic("root is not valid")
+	}
+	contractRoot = filepath.Clean(root)
 }

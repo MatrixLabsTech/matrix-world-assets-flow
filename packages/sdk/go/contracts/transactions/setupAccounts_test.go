@@ -3,7 +3,7 @@ package transactions
 import (
 	"testing"
 
-	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts"
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/crypto"
 	"github.com/onflow/flow-go-sdk/test"

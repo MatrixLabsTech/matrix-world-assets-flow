@@ -5,16 +5,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts"
 )
 
 const (
-  MintFile = "mint.cdc"
+	MintFile                           = "mint.cdc"
 	defaultNonFungibleTokenAddress     = "\"../contracts/lib/NonFungibleToken.cdc\""
 	defaultMatrixWorldAssetsNFTAddress = "\"../contracts/MatrixWorldAssetsNFT.cdc\""
 )
 
-func GenerateMintNFTTransaction(nftAddr, mwAssetsNFTAddr string) [] byte {
+func GenerateMintNFTTransaction(nftAddr, mwAssetsNFTAddr string) []byte {
 	trans, err := ioutil.ReadFile(filepath.Join(contracts.GetTransRoot(), MintFile))
 	if err != nil {
 		panic(err)

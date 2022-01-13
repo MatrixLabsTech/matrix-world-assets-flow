@@ -3,9 +3,9 @@ package mint
 import (
 	"testing"
 
-	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts"
-	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts/lib"
-	"github.com/MatrixLabsTech/matrix-world-assets-flow/sdk/go/contracts/transactions"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts/lib"
+	"github.com/MatrixLabsTech/matrix-world-assets-flow/packages/sdk/go/contracts/transactions"
 	"github.com/onflow/cadence"
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/crypto"
@@ -53,7 +53,7 @@ func TestMatrixWorldAssetsNFT(t *testing.T) {
 
 	t.Logf("MatrixWorldAssetsNFT address: %s", assetsAddr)
 
-  // SetupAccount
+	// SetupAccount
 	// Create a new user account
 	userKeys := test.AccountKeyGenerator()
 	userPk, userSigner := userKeys.NewWithSigner()
@@ -71,13 +71,13 @@ func TestMatrixWorldAssetsNFT(t *testing.T) {
 	r, err := e.SignAndExecTrans(tx,
 		[]flow.Address{e.ServiceKey().Address, addr},
 		[]crypto.Signer{e.ServiceKey().Signer(), userSigner})
-  
+
 	require.NoError(t, err)
 	require.False(t, r.Reverted(), r.Error)
 
-  _, err = e.CommitBlock()
-  require.NoError(t, err)
-  t.Logf("SetupAccounts: %s", r.Events)
+	_, err = e.CommitBlock()
+	require.NoError(t, err)
+	t.Logf("SetupAccounts: %s", r.Events)
 
 	// Mint
 	mintCode := GenerateMintNFTTransaction(nftAddr.String(), assetsAddr.String())
@@ -89,36 +89,34 @@ func TestMatrixWorldAssetsNFT(t *testing.T) {
 		SetPayer(e.ServiceKey().Address).
 		AddAuthorizer(assetsAddr)
 
+	recipientArray := make([]cadence.Value, 0)
+	metadataArray := make([]cadence.Value, 0)
 
+	userAddrC := cadence.NewAddress(flow.HexToAddress(addr.String()))
+	require.NoError(t, err)
 
-  recipientArray := make([]cadence.Value, 0)
-  metadataArray := make([]cadence.Value, 0)
+	recipientArray = append(recipientArray, userAddrC)
 
-  userAddrC := cadence.NewAddress(flow.HexToAddress(addr.String()))
-  require.NoError(t, err)
-
-  recipientArray = append(recipientArray, userAddrC)
-
-  mintTx.AddArgument(cadence.NewArray(recipientArray))
+	mintTx.AddArgument(cadence.NewArray(recipientArray))
 
 	// Construct arguments with sample metadata
 	metadata := lib.NewMetadataV1("test-name", "0.0.1",
 		"test-description",
-		"https://matrixworld.org/home", 
-    "https://matrixworld.org/static/media/matrixLogo.9fdc86f0.svg", 
-    "{}", 
-    "https://d2yoccx42eml7e.cloudfront.net/metadata/default.mp4", 
-    "Blocto&Matrixworld").ToCadenceDictionary()
-  metadataArray = append(metadataArray, metadata)
+		"https://matrixworld.org/home",
+		"https://matrixworld.org/static/media/matrixLogo.9fdc86f0.svg",
+		"{}",
+		"https://d2yoccx42eml7e.cloudfront.net/metadata/default.mp4",
+		"Blocto&Matrixworld").ToCadenceDictionary()
+	metadataArray = append(metadataArray, metadata)
 
-  mintTx.AddArgument(cadence.NewArray(metadataArray))
+	mintTx.AddArgument(cadence.NewArray(metadataArray))
 
-  royaltyAddressC := cadence.NewAddress(flow.HexToAddress(assetsAddr.Hex()))
-  royaltyFeeC, err  := cadence.NewUFix64("0.05")
-  require.NoError(t, err)
+	royaltyAddressC := cadence.NewAddress(flow.HexToAddress(assetsAddr.Hex()))
+	royaltyFeeC, err := cadence.NewUFix64("0.05")
+	require.NoError(t, err)
 
-  mintTx.AddArgument(royaltyAddressC)
-  mintTx.AddArgument(royaltyFeeC)
+	mintTx.AddArgument(royaltyAddressC)
+	mintTx.AddArgument(royaltyFeeC)
 
 	mintR, err := e.SignAndExecTrans(mintTx,
 		[]flow.Address{e.ServiceKey().Address, assetsAddr},
@@ -126,6 +124,6 @@ func TestMatrixWorldAssetsNFT(t *testing.T) {
 	require.NoError(t, err)
 	require.False(t, mintR.Reverted(), mintR.Error)
 
-  t.Logf("Mint: %s", mintR.Events)
+	t.Logf("Mint: %s", mintR.Events)
 
 }
