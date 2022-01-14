@@ -27,10 +27,10 @@ func EventToJSON(e *cadence.Event) []map[string]interface{} {
 	return preparedFields
 }
 
-func WaitForSeal(ctx context.Context, c *client.Client, id flow.Identifier) *flow.TransactionResult {
+func WaitForSeal(ctx context.Context, c *client.Client, id flow.Identifier) (*flow.TransactionResult, error){
 	result, err := c.GetTransactionResult(ctx, id)
 	if err != nil {
-		panic(err)
+    return nil, err
 	}
 
 	fmt.Printf("Waiting for transaction %s to be sealed...\n", id)
@@ -40,13 +40,13 @@ func WaitForSeal(ctx context.Context, c *client.Client, id flow.Identifier) *flo
 		fmt.Print(".")
 		result, err = c.GetTransactionResult(ctx, id)
 		if err != nil {
-			panic(err)
+      return nil, err
 		}
 	}
 
 	fmt.Printf("%v", result)
 	fmt.Printf("Transaction %s sealed\n", id)
-	return result
+	return result, nil
 }
 
 func ServiceAccount(flowClient *client.Client, address, privteKey string, signAlgo string) (flow.Address, *flow.AccountKey, crypto.Signer) {
