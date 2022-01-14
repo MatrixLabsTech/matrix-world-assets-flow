@@ -2,6 +2,10 @@ package lib
 
 import "github.com/onflow/cadence"
 
+const (
+  VersionV100 string = "assets-v1.0.0"
+)
+
 // define metadata struct
 type Metadata struct {
 	Name         string `json:"name"`

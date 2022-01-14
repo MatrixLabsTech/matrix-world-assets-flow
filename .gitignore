@@ -4,3 +4,4 @@
 packages/contracts/envs/flow.testnet.json
 
 .idea
+packages/contracts/envs/flow.mainnet.json

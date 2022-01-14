@@ -46,7 +46,8 @@
     "MatrixWorldAssetsNFT": {
       "source": "./cadence/contracts/MatrixWorldAssetsNFT.cdc",
       "aliases": {
-        "testnet": "95702b3642af3d0c"
+        "testnet": "95702b3642af3d0c",
+        "mainnet": "f20df769e658c257"
       }
     }
   },
