@@ -84,16 +84,16 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
         }
 
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
-            return &self.ownedNFTs[id] as &NonFungibleToken.NFT
+            return (&self.ownedNFTs[id] as &NonFungibleToken.NFT?)!
         }
 
         pub fun getMetadata(id: UInt64): {String:String} {
-            let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
+            let ref = (&self.ownedNFTs[id] as auth &NonFungibleToken.NFT?)!
             return (ref as! &MatrixWorldAssetsNFT.NFT).getMetadata()
         }
 
         pub fun getRoyalties(id: UInt64): [LicensedNFT.Royalty] {
-            let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
+            let ref = (&self.ownedNFTs[id] as auth &NonFungibleToken.NFT?)!
             return (ref as! &LicensedNFT.NFT).getRoyalties()
         }
 
