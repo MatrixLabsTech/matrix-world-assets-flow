@@ -1,5 +1,5 @@
-import NonFungibleToken from "lib/NonFungibleToken.cdc"
-import LicensedNFT from "LicensedNFT.cdc"
+import NonFungibleToken from 0x1d7e57aa55817448
+import LicensedNFT from 0xf20df769e658c257 
 
 // MatirxWorldAssetsNFT token contract
 //
@@ -142,3 +142,4 @@ pub contract MatrixWorldAssetsNFT : NonFungibleToken, LicensedNFT {
         emit ContractInitialized()
     }
 }
+
